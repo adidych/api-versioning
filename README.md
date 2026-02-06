@@ -35,9 +35,22 @@ Note: Explicitly declaring @ApiVersion("1.0") is optional, as 1.0 is the default
 To enable @ApiVersion support, a custom RequestMappingHandlerMapping
 must be registered in your Spring configuration.
 
+### Installation
+Add the dependency to your pom.xml:
+```
+<dependency>
+  <groupId>io.github.adidych</groupId>
+  <artifactId>api-versioning</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
 ### SpringBoot 4.x
 
 ```
+import io.github.adidych.apiversioning.ApiVersionRequestMappingHandler;
+...
+
 @Configuration
 public class ApiVersioningConfig extends DelegatingWebMvcConfiguration {
 
@@ -63,35 +76,6 @@ public class ApiVersioningConfig extends DelegatingWebMvcConfiguration {
     }
 }
 ```
-
-### SpringBoot 3.x
-
-```
-@Configuration
-public class ApiVersioningConfig extends DelegatingWebMvcConfiguration {
-
-    @Override
-    protected RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
-        return new ApiVersionRequestMappingHandler();
-    }
-
-    @Bean
-    @Primary
-    @Override
-    public RequestMappingHandlerMapping requestMappingHandlerMapping(
-            @Qualifier("mvcContentNegotiationManager") ContentNegotiationManager contentNegotiationManager,
-            @Qualifier("mvcConversionService") FormattingConversionService conversionService,
-            @Qualifier("mvcResourceUrlProvider") ResourceUrlProvider resourceUrlProvider) {
-        return super.requestMappingHandlerMapping(
-                contentNegotiationManager, 
-                conversionService, 
-                resourceUrlProvider
-        );
-    }
-}
-
-```
-
 
 ## Usage Example
 
