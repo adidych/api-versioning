@@ -96,7 +96,7 @@ public class ApiVersioningConfig extends DelegatingWebMvcConfiguration {
 ## Usage Example
 
 ```
-import com.versioning.ApiVersion;
+import com.io.github.adidych.apiversioning.ApiVersion;
 ...
 
 @RestController
